@@ -1,8 +1,8 @@
 <?php
-$host = "webrodina.dbaserver.net";
-$dbname = "webrodina";
-$username = "webrodina";
-$password = "WPyG3CNeH5VA";
+$host = //Nějaký serevr databáze;
+$dbname = //Jméno databáze;
+$username = //Jméno uživatele databáze;
+$password = //Heslo do databáze;
 
 try {
     // Tady musíme použít PŘESNĚ ty názvy, které jsou nahoře
