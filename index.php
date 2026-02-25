@@ -1,0 +1,128 @@
+<?php
+require "includes/auth.php";
+require "includes/db.php";
+include "includes/auth_check.php";
+checkAuth();
+
+// Načteme 3 nejnovější alba pro sekci "Nová alba"
+$latest_albums = $conn->query("SELECT * FROM albums ORDER BY id DESC LIMIT 3")->fetchAll();
+
+// Načteme poslední zápis z kroniky
+$latest_kronika = $conn->query("SELECT * FROM kronika ORDER BY event_date DESC LIMIT 1")->fetch();
+?>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <srcript src="includes/respons.js"></script>
+    <title>Web rodina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="devlog_style.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGN9Y19FYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GGN9Y19FYQ');
+</script>
+<body>
+<?php include "includes/navbar.php"; ?>
+<?php
+// --- NASTAVENÍ VERZE ---
+$current_version = "1.3"; 
+// Pokud cookie neexistuje nebo má jinou verzi, zobrazíme box
+$show_update = !isset($_COOKIE['app_version']) || $_COOKIE['app_version'] !== $current_version;
+?>
+
+<?php if ($show_update): ?>
+<?php if ($show_update): ?>
+<div id="version-log-overlay" class="log-overlay">
+    <div id="version-log-box" class="version-log-popup">
+        <div class="version-log-header">
+            <h4><i class="fas fa-rocket"></i>Upozornění o odstavení webu</h4>
+            <button onclick="closeVersionLog('<?= $current_version ?>')" class="close-log-btn">&times;</button>
+        </div>
+        <div class="version-log-body">
+    <div class="version-grid">
+        <div class="grid-item label"><strong>‼️Odstávka webu‼️</strong></div>
+        <div class="grid-item desc">28.02.2026 bude web mezi 18:00 a 19:00 odstaven</div>
+    </div>
+
+    <div style="text-align: right; margin-top: 30px;">
+        <button onclick="closeVersionLog('<?= $current_version ?>')" class="btn-confirm">Rozumím, díky!</button>
+    </div>
+</div>
+    </div>
+</div>
+
+<script>
+function closeVersionLog(version) {
+    const d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    document.cookie = "app_version=" + version + ";expires="+ d.toUTCString() + ";path=/";
+    
+    // Skryjeme celé překrytí
+    document.getElementById('version-log-overlay').style.display = 'none';
+}
+</script>
+<?php endif; ?>
+
+<?php endif; ?>
+<div class="container">
+    <header class="hero">
+        <h1>Ahoj, <?= htmlspecialchars($_SESSION['user']) ?>! 👋</h1>
+        <p>Vítej zpět na našem rodinném webu.</p>
+    </header>
+
+    <section class="action-grid">
+        <a href="galerie.php" class="action-card">
+            <div class="icon-circle"><i class="fas fa-images"></i></div>
+            <h3>Galerie</h3>
+            <p>Prohlížet společné fotky a videa</p>
+        </a>
+        <a href="upload.php" class="action-card">
+            <div class="icon-circle"><i class="fas fa-cloud-upload-alt"></i></div>
+            <h3>Nahrát</h3>
+            <p>Přidat nové vzpomínky do alb</p>
+        </a>
+        <a href="kronika.php" class="action-card">
+            <div class="icon-circle"><i class="fas fa-book-open"></i></div>
+            <h3>Kronika</h3>
+            <p>Zapsat nebo číst rodinnou kroniku</p>
+        </a>
+    </section>
+
+    <section class="home-section">
+        <h2><i class="fas fa-star"></i> Nově přidaná alba</h2>
+        <div class="album-preview-grid">
+            <?php foreach ($latest_albums as $album): ?>
+                <a href="galerie.php?album_id=<?= $album['id'] ?>" class="album-mini-card">
+                    <div class="album-folder-icon"><i class="fas fa-folder"></i></div>
+                    <span><?= htmlspecialchars($album['name']) ?></span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
+    <?php if ($latest_kronika): ?>
+    <section class="home-section">
+        <h2><i class="fas fa-bullhorn"></i> Poslední zápis v kronice</h2>
+        <div class="news-box">
+            <span class="news-date"><?= date("j. n. Y", strtotime($latest_kronika['event_date'])) ?></span>
+            <h3><?= htmlspecialchars($latest_kronika['title']) ?></h3>
+            <p><?= mb_strimwidth(htmlspecialchars($latest_kronika['content']), 0, 200, "...") ?></p>
+            <a href="kronika.php" class="read-more">Číst dál →</a>
+        </div>
+    </section>
+    <?php endif; ?>
+</div>
+
+</body>
+<?php include "includes/footer.php"; ?>
+
+</html>
