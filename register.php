@@ -36,6 +36,7 @@ if ($isValid && isset($_POST['register_user'])) {
     <srcript src="includes/respons.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Registrace|Web Rodina</title>
 </head>

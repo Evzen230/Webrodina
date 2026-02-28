@@ -78,6 +78,7 @@ if (isset($_GET['delete_media'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Galerie | Rodinný web</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="css/gal_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />

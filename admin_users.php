@@ -1,5 +1,6 @@
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style2.css">
 <?php
 require "includes/auth.php";
 require "includes/db.php";

@@ -1,15 +1,6 @@
 <head>
+        <link rel="stylesheet" href="css/style2.css">
 </head>
-<!-- Google tag (gtag.js) 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGN9Y19FYQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GGN9Y19FYQ');
-</script>
--->
 
 <?php   
 require "includes/db.php";

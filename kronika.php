@@ -27,6 +27,7 @@ $entries = $conn->query($query)->fetchAll();
     <srcript src="includes/respons.js"></script>
     <title>Rodinná Kronika</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="luminous.css">
     <script src="luminous.js"></script>
 </head>

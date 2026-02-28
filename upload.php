@@ -135,6 +135,7 @@ $albums = $conn->query("SELECT * FROM albums ORDER BY name ASC")->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nahrávání fotek | Web Rodinna</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* OPRAVA OBŘÍCH FOTEK - GRID SYSTÉM */
