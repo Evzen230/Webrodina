@@ -1,0 +1,285 @@
+/* Kontejner pro lajky a mazání */
+.media-interactions {
+    display: flex;
+    justify-content: space-between; /* Rozdělí lajky doleva a koš doprava */
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #eee; /* Jemná linka nad interakcemi */
+    margin-top: 10px;
+}
+
+.media-interactions a {
+    text-decoration: none !important; /* Definitivní konec podtržení */
+    color: #666; /* Základní barva ikon */
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Styl pro lajk */
+.like-btn:hover {
+    color: #e74c3c; /* Srdíčko zčervená */
+    transform: scale(1.1);
+}
+
+/* Styl pro smazání */
+.delete-btn {
+    color: #ccc; /* Odpadkový koš bude nenápadný */
+}
+
+.delete-btn:hover {
+    color: #e74c3c; /* Při najetí zčervená (varování) */
+}
+
+/* Počet lajků */
+.like-count {
+    font-weight: bold;
+    color: #444;
+}
+
+/* Odstranění modré barvy a podtržení pro lajky a koš */
+.media-interactions a, 
+.media-interactions a:link, 
+.media-interactions a:visited, 
+.media-interactions a:hover, 
+.media-interactions a:active {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+    color: inherit; /* Převezme barvu od rodiče, nebo ji definujeme níže */
+}
+
+.media-interactions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 5px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Specifické barvy, aby to nebylo jen černé */
+.like-btn {
+    color: #555 !important;
+    font-weight: 500;
+}
+
+.like-btn i {
+    color: #ff4757; /* Srdíčko bude červené vždycky */
+    margin-right: 5px;
+}
+
+.delete-btn {
+    color: #a0a0a0 !important;
+}
+
+.delete-btn:hover {
+    color: #ff4757 !important; /* Koš zčervená při najetí */
+}
+
+/* Kontejner formuláře */
+.comment-form {
+    display: flex;
+    align-items: center;
+    background: #f0f2f5; /* Světle šedá jako na FB */
+    border-radius: 20px; /* Kulaté rohy */
+    padding: 5px 15px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.comment-form:focus-within {
+    background: #e4e6e9; /* Mírné ztmavení při psaní */
+    box-shadow: 0 0 0 1px #ddd;
+}
+
+/* Vstupní pole */
+.comment-form input[type="text"] {
+    flex: 1;
+    background: transparent;
+    border: none !important;
+    outline: none !important;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: #1c1e21;
+}
+
+/* Tlačítko se šipkou */
+.comment-form button {
+    background: transparent;
+    border: none !important;
+    color: #0084ff; /* Hezká modrá */
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0 0 0 10px;
+    transition: transform 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.comment-form button:hover {
+    color: #0073e6;
+    transform: scale(1.1); /* Mírné zvětšení při najetí */
+}
+
+/* Oprava pro mobilní zobrazení */
+@media (max-width: 480px) {
+    .comment-form {
+        padding: 3px 12px;
+    }
+}
+
+.btn-share {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+.btn-share:hover {
+    filter: brightness(1.1);
+}
+
+.share-popup {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+}
+.share-popup-content {
+    background: white; padding: 25px; border-radius: 12px;
+    width: 100%; max-width: 400px; position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.share-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.expiry-row, .copy-row { display: flex; gap: 10px; margin-bottom: 15px; }
+.expiry-row input, .copy-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+.btn-share-trigger { background: #0084ff; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-left: 10px; }
+.btn-generate { width: 100%; background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+.btn-copy { background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+.close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #888; }
+
+/* Pozadí popupu (overlay) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Okno samotné */
+.modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    background: none; border: none; font-size: 24px; cursor: pointer; color: #888;
+}
+
+.expiry-settings { display: flex; gap: 10px; margin-bottom: 20px; }
+.expiry-settings input { width: 70px; padding: 8px; }
+.expiry-settings select { flex-grow: 1; padding: 8px; }
+
+.btn-generate-full {
+    width: 100%; padding: 12px; background: #3498db; color: #fff;
+    border: none; border-radius: 6px; font-weight: bold; cursor: pointer;
+}
+.btn-generate-full:hover {
+    filter: brightness(1.1);
+}
+.copy-box { display: flex; gap: 5px; margin-top: 5px; }
+.copy-box input { flex-grow: 1; padding: 10px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 4px; }
+
+.copy-status { display: none; color: #28a745; font-size: 0.8rem; margin-top: 5px; text-align: right; }
+
+/* Fixní překrytí přes celou obrazovku */
+.modal-overlay {
+    position: fixed; /* Klíčové: zůstane na místě i při skrolování */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75); /* Poloprůhledné černé pozadí */
+    display: none; /* Skryto defaultně, JS přepne na 'flex' */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Musí být vyšší než z-index fotek nebo hlavičky */
+}
+
+/* Samotné okno menu */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 10000;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Styly pro vnitřek popupu */
+.expiry-settings {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.copy-box {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    background: #f4f4f4;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.copy-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px;
+}
+
+small a:hover {
+    text-decoration: underline;
+    color: #3498db; /* Barva, kterou používáš pro aktivní prvky */
+}

@@ -1,0 +1,329 @@
+/* Kontejner podle tvého nákresu */
+.profile-header-box {
+    display: flex;
+    background: white;
+    border: 1px solid #d1d8e0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.header-left {
+    flex: 0 0 35%;
+    padding: 30px;
+    background: #f8f9fb;
+    border-right: 1px solid #d1d8e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bio-box, .stats-box {
+    padding: 20px;
+}
+
+.bio-box {
+    flex: 1;
+    border-bottom: 1px solid #d1d8e0;
+}
+
+.bio-box label, .stats-box label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 8px;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-item strong {
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.stat-item span {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+/* Badge styl */
+.badge {
+    background: #3498db;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+/* Kontejner pro spodní část */
+.profile-content-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Levý sloupec 280px, pravý zbytek */
+    gap: 20px;
+    margin-top: 20px;
+    align-items: start;
+}
+
+/* Sidebar s alby */
+.album-sidebar {
+    background: white;
+    border: 1px solid #d1d8e0;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.album-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Styl tlačítek alb */
+.album-tab-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;
+    background: #f8f9fb;
+    border: 1px solid #e1e8ef;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.album-tab-btn i { margin-right: 12px; color: #3498db; }
+.album-tab-btn .name { flex: 1; font-weight: 500; color: #2c3e50; }
+.album-tab-btn .badge-count { 
+    background: #d1d8e0; 
+    padding: 2px 8px; 
+    border-radius: 10px; 
+    font-size: 0.75rem; 
+}
+
+.album-tab-btn:hover { background: #edf2f7; border-color: #3498db; }
+.album-tab-btn.active { 
+    background: #3498db; 
+    color: white; 
+    border-color: #2980b9; 
+}
+.album-tab-btn.active i, .album-tab-btn.active .name { color: white; }
+
+/* Pravá část s fotkami */
+.photo-display-area {
+    background: white;
+    border: 1px solid #d1d8e0;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 400px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.photo-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* Skrytí neaktivních alb */
+.album-content-view { display: none; }
+.album-content-view.active { display: block; }
+
+.member-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: center; /* Vycentrování v levém panelu */
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Barevné varianty */
+.badge.gold   { background: linear-gradient(45deg, #f1c40f, #f39c12); color: #000; }
+.badge.purple { background: #9b59b6; }
+.badge.red    { background: #e74c3c; }
+.badge.blue   { background: #3498db; }
+.badge.green  { background: #2ecc71; }
+.badge.gray   { background: #95a5a6; }
+
+.badge.night  { background: #2c3e50; border: 1px solid #34495e; }
+.badge.heart  { background: #ff4757; }
+.badge.book   { background: #7158e2; }
+.badge.orange { background: #ff9f43; }
+.badge.teal   { background: #1dd1a1; }
+
+.container-edit {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-icon-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #3498db;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: 0.3s;
+}
+
+.edit-icon-btn:hover { background: #2980b9; transform: scale(1.1); }
+
+.edit-pencil-small {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.edit-textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-family: inherit;
+}
+
+.btn-save-small {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#avatar-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Kruhová profilovka */
+    border: 3px solid #3498db;
+    background-color: #f0f2f5; /* Pozadí pod identiconem */
+}
+
+.edit-controls {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    gap: 5px;
+}
+
+.edit-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    color: white;
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+.edit-icon-btn.blue { background: #3498db; }
+.edit-icon-btn.red { background: #e74c3c; border: none; } /* Červené pro smazání */
+
+.edit-icon-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
+
+.photo-item {
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.photo-item:hover {
+    transform: scale(1.03); /* Jemné zvětšení při najetí */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.photo-item img {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.photo-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Ikona lupy, která se objeví při najetí na fotku */
+.photo-item a::after {
+    content: '\f00e'; /* FontAwesome lupa */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.photo-item:hover a::after {
+    opacity: 1;
+}
+
+.photo-item:hover img {
+    filter: brightness(0.7);
+}

@@ -1,0 +1,924 @@
+:root {
+    --primary: #3498db;
+    --text: #2c3e50;
+    --bg: #f4f7f6;
+    --border: #e1e4e8;
+}
+
+.docs-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Sidebar Navigace */
+.docs-sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.docs-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.docs-sidebar li a {
+    display: block;
+    padding: 10px 0;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: 0.2s;
+}
+
+.docs-sidebar li a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+/* Accordion Stylizace */
+.legal-accordion {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.legal-accordion summary {
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.legal-accordion summary::-webkit-details-marker { display: none; }
+
+.legal-accordion summary::after {
+    content: '+';
+    font-size: 1.2rem;
+}
+
+.legal-accordion[open] summary::after { content: '-'; }
+
+.details-content {
+    padding: 15px;
+    border-top: 1px solid var(--border);
+    background: #fafafa;
+}
+
+/* Tlačítko pro PDF */
+.btn-pdf {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Tisk do PDF */
+@media print {
+    .docs-sidebar, .btn-pdf { display: none; }
+    .docs-layout { grid-template-columns: 1fr; }
+    .legal-accordion { border: none; }
+    .legal-accordion summary::after { display: none; }
+    .legal-accordion[open] { display: block; }
+}
+
+/* Izolace celého bloku */
+.legal-wrap {
+    display: flex;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 2rem auto;
+    line-height: 1.6;
+}
+
+/* Navigace - přizpůsobí se tvému menu v nastavení */
+.legal-nav {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.nav-sticky {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-sticky a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #666;
+    border-left: 3px solid #eee;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.nav-sticky a:hover {
+    background: rgba(52, 152, 219, 0.05);
+    border-left-color: #3498db; /* Tvoje modrá ze screenshotu */
+    color: #3498db;
+}
+
+/* Hlavní obsah */
+.legal-main h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 2rem; }
+.legal-main section { margin-bottom: 3rem; }
+.legal-main h3 { margin-bottom: 1rem; color: #333; }
+
+/* Accordion - čistý design bez stínů, co by rušily */
+.legal-acc {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+
+.legal-acc summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.legal-acc summary::after { content: '+'; color: #aaa; }
+.legal-acc[open] summary { border-bottom: 1px solid #eee; }
+.legal-acc[open] summary::after { content: '-'; }
+
+.acc-body { padding: 15px; background: #fcfcfc; font-size: 0.95rem; }
+
+/* PDF Tlačítko */
+.legal-print-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Mobilní verze */
+@media (max-width: 768px) {
+    .legal-wrap { flex-direction: column; }
+    .legal-nav { width: 100%; position: relative; }
+    .nav-sticky { position: static; }
+}
+
+/* Kontejner pro izolaci */
+.legal-container {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #f4f7f6; /* Primární */
+    color: #000000; /* Sekundární */
+    font-family: sans-serif;
+    text-align: left;
+}
+
+/* Postranní lišta */
+.legal-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.legal-toc {
+    position: sticky;
+    top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db; /* Doplňková 1 */
+}
+
+.legal-toc a {
+    display: block;
+    padding: 8px 0;
+    color: #2c3e50; /* Doplňková 2 */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.legal-toc a:hover {
+    color: #3498db;
+    padding-left: 5px;
+}
+
+/* Obsah */
+.legal-body {
+    border-radius: 5px;
+    padding: 5px;
+    flex-grow: 1;
+    background-color: #f8f9fa;
+}
+
+.legal-title {
+    color: #2c3e50; /* Doplňková 2 */
+    border-bottom: 2px solid #3498db; /* Doplňková 1 */
+    padding-bottom: 10px;
+    margin: 30px 0 15px 0;
+    font-size: 1.8rem;
+}
+
+/* Rozklikávací sekce (Accordion) */
+.legal-q {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.legal-q summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    color: #2c3e50;
+}
+
+.legal-q[open] summary {
+    background: #f1f7fd;
+    border-bottom: 1px solid #ddd;
+}
+
+.legal-ans {
+    padding: 15px;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Tlačítko */
+.legal-btn-pdf {
+    margin-top: 20px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.legal-btn-pdf:hover { background: #3498db; }
+
+/* Responzivita */
+@media (max-width: 800px) {
+    .legal-container { flex-direction: column; }
+    .legal-sidebar { width: 100%; }
+}
+.legal-divider {
+    height: 1px;
+    background: linear-gradient(to right, #2c3e50, #3498db, transparent);
+    border: none;
+    margin: 4px 0;
+}
+.legal-doc-header {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    border-bottom: 4px solid #2c3e50;
+    margin-bottom: 40px;
+}
+
+.doc-badge {
+    background: #3498db;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.legal-doc-header h1 {
+    margin: 15px 0;
+    color: #2c3e50;
+    font-size: 2.2rem;
+}
+
+.doc-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.doc-meta span i {
+    color: #3498db;
+    margin-right: 5px;
+}
+
+@media print {
+    /* Skryjeme vše, co na papíře nechceme */
+    .legal-sidebar, .legal-divider, .legal-btn-pdf, .search-box, nav, footer {
+        display: none !important;
+    }
+
+    /* Roztáhneme obsah na celou šířku */
+    .legal-container {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* Automaticky rozbalíme všechny accordiony pro tisk */
+    .legal-q {
+        border: 1px solid #eee !important;
+        page-break-inside: avoid;
+    }
+    
+    .legal-q[open] summary, .legal-q summary {
+        background: none !important;
+        font-weight: bold;
+    }
+
+    .legal-ans {
+        display: block !important; /* Zobrazí obsah i u zavřených accordionů */
+    }
+
+    @page {
+        margin: 2.5cm; /* Větší okraje přímo v nastavení tiskárny */
+    }
+
+    .legal-body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important; /* Na papíře padding nepotřebujeme, řeší to @page margin */
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .legal-doc-header {
+        padding: 20px 0 !important;
+        border-bottom: 2px solid #000 !important;
+    }
+}
+
+.legal-toc {
+    position: sticky;
+    top: 20px;
+    /* Výpočet výšky: celá výška obrazovky minus rezerva nahoře a dole */
+    max-height: calc(100vh - 40px); 
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    
+    /* Aktivace scrollování */
+    overflow-y: auto;
+    
+    /* Volitelné: schování scrollbaru, aby to vypadalo čistěji (pro Chrome/Safari) */
+    scrollbar-width: thin; /* Pro Firefox */
+}
+
+/* Úprava scrollbaru pro Chrome/Safari, aby nebyl moc tlustý */
+.legal-toc::-webkit-scrollbar {
+    width: 4px;
+}
+
+.legal-toc::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.legal-toc {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    
+    /* Aktivace scrollování */
+    overflow-y: auto;
+
+    /* 1. Skrytí pro Firefox */
+    scrollbar-width: none; 
+    
+    /* 2. Skrytí pro Internet Explorer a starý Edge */
+    -ms-overflow-style: none; 
+}
+
+/* 3. Skrytí pro Chrome, Safari a nový Edge (WebKit) */
+.legal-toc::-webkit-scrollbar {
+    display: none;
+}
+
+.legal-q summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    justify-content: space-between; /* Tohle odsune "+" na konec */
+    align-items: center;
+    color: #2c3e50;
+}
+
+/* Tento styl zajistí, že ikona a text budou u sebe */
+.summary-content {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Mezera mezi ikonou a textem */
+}
+
+/* Styl pro samotnou ikonu, aby měla jednotnou šířku */
+.summary-content i {
+    width: 20px;
+    text-align: center;
+    color: #3498db; /* Tvoje modrá */
+}
+
+/* Odstranění defaultního trojúhelníčku v Chrome/Safari */
+.legal-q summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Vlastní plus/mínus na pravé straně */
+.legal-q summary::after {
+    content: '\f067'; /* FontAwesome plus */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.legal-q[open] summary::after {
+    content: '\f068'; /* FontAwesome mínus */
+}
+
+.legal-title3 {
+    color: #2c3e50; /* Doplňková 2 */
+    padding-bottom: 4px;
+    margin: 30px 0 10px 0;
+    font-size: 1.5rem;
+}
+
+.legal-btn-download {
+    display: block;
+    margin-top: 20px;
+    background: #c0392b; /* Červená barva pro PDF pocit */
+    color: #fff !important; /* Vynucení bílé, aby to nepřebil styl odkazů */
+    text-decoration: none !important;
+    text-align: center;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.legal-btn-download:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.legal-btn-download i {
+    margin-right: 8px;
+}
+
+.doc-nav-group {
+    margin-bottom: 25px;
+}
+
+.doc-nav-group h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #3498db; /* Tvoje doplňková 1 */
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.doc-nav-group a {
+    border-left: 2px solid transparent;
+    padding-left: 15px !important;
+}
+
+.doc-nav-group a.active {
+    background: #f1f7fd;
+    border-left: 2px solid #3498db;
+    color: #3498db !important;
+    font-weight: bold;
+}
+
+/* Reset pro jistotu, aby se to nebilo */
+#docs-root {
+    display: flex !important; /* Vynutí flexbox vedle sebe */
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* SIDEBAR - Fixní nalevo */
+#docs-root .docs-sidebar-fixed {
+    width: 280px !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    background: #f9fafb !important; /* Světle šedá a la Google */
+    border-right: 1px solid #e5e7eb !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 24px !important;
+    z-index: 9999 !important; /* Aby byl nad tvým navbarem */
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+#docs-root .docs-sidebar-fixed::-webkit-scrollbar { display: none; }
+
+/* BRANDING */
+#docs-root .docs-brand {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#docs-root .docs-brand span { color: #3498db; font-weight: 400; font-size: 0.8rem; }
+
+/* NAVIGACE */
+#docs-root .docs-group { margin-bottom: 25px; }
+#docs-root .docs-group h6 { 
+    font-size: 0.7rem; 
+    text-transform: uppercase; 
+    color: #9ca3af; 
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+#docs-root .docs-link {
+    display: block;
+    padding: 8px 12px;
+    color: #4b5563;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    margin-bottom: 2px;
+}
+
+#docs-root .docs-link:hover, 
+#docs-root .docs-link.active {
+    background: #f3f4f6;
+    color: #3498db !important;
+    font-weight: 500;
+}
+
+/* HLAVNÍ OBSAH - Odsazený o šířku sidebaru */
+#docs-root .docs-content-area {
+    margin-left: 280px !important; /* Musí být stejné jako šířka sidebaru */
+    flex: 1;
+    display: block !important;
+}
+
+#docs-root .docs-article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 40px;
+}
+
+#docs-root .docs-lead {
+    font-size: 1.25rem;
+    color: #6b7280;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Pokud máš mobilní zobrazení v hlavním stylu, tohle ho "přebije" pro desktop */
+@media (max-width: 1024px) {
+    #docs-root .docs-sidebar-fixed { width: 240px !important; }
+    #docs-root .docs-content-area { margin-left: 240px !important; }
+}
+
+/* Kontejner pro karty - zajistí, že budou vedle sebe */
+#docs-root .docs-grid {
+    display: grid !important;
+    /* Na desktopu 2 sloupce, na mobilu 1 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 20px !important;
+    margin: 30px 0 !important;
+    width: 100% !important;
+}
+
+/* Styl samotné karty */
+#docs-root .grid-card {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 24px !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    color: #1f2937 !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* Efekt při najetí myší - a la Google Docs */
+#docs-root .grid-card:hover {
+    border-color: #3498db !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Ikona v kartě */
+#docs-root .grid-card i {
+    font-size: 1.5rem !important;
+    color: #3498db !important;
+    margin-bottom: 16px !important;
+}
+
+/* Nadpis v kartě */
+#docs-root .grid-card h4 {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.1rem !important;
+    color: #111827 !important;
+}
+
+/* Text v kartě */
+#docs-root .grid-card p {
+    margin: 0 !important;
+    font-size: 0.9rem !important;
+    color: #6b7280 !important;
+    line-height: 1.5 !important;
+}
+
+/* Blok pro kód */
+#docs-root .code-block {
+    background: #1e293b !important; /* Tmavě modrá/černá */
+    color: #e2e8f0 !important;
+    padding: 16px 20px !important;
+    border-radius: 8px !important;
+    font-family: 'Fira Code', monospace !important;
+    font-size: 0.85rem !important;
+    overflow-x: auto !important;
+    margin: 20px 0 !important;
+    border: 1px solid #334155 !important;
+}
+
+/* --- OPRAVA PRO TIPY (CALLOUTS) --- */
+#docs-root .info-callout {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+    background-color: #f0f7ff !important; /* Jemná modrá */
+    border-left: 4px solid #3498db !important;
+    padding: 20px !important;
+    margin: 25px 0 !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: #1e3a8a !important;
+    text-align: left !important;
+}
+
+#docs-root .info-callout i {
+    font-size: 1.2rem !important;
+    color: #3498db !important;
+    margin-top: 2px !important;
+}
+
+#docs-root .info-callout strong {
+    display: block !important;
+    margin-bottom: 5px !important;
+    color: #1e40af !important;
+}
+
+/* --- OPRAVA PRO POSTUPY (STEPS) --- */
+#docs-root .step {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+    margin-bottom: 20px !important;
+    padding: 15px !important;
+    background: #ffffff !important;
+    border: 1px solid #f3f4f6 !important;
+    border-radius: 10px !important;
+}
+
+#docs-root .step-number {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    background-color: #2c3e50 !important; /* Tvá doplňková 2 */
+    color: #ffffff !important;
+    border-radius: 50% !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    flex-shrink: 0 !important; /* Zabrání deformaci čísla */
+}
+
+#docs-root .step-text {
+    flex: 1 !important;
+    color: #374151 !important;
+    line-height: 1.6 !important;
+}
+
+#docs-root .step-text strong {
+    color: #111827 !important;
+}
+
+/* Základní struktura zůstává stejná */
+#docs-root .info-callout {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+    padding: 20px !important;
+    margin: 25px 0 !important;
+    border-radius: 8px !important;
+    border-left: 5px solid !important;
+    text-align: left !important;
+}
+
+/* MODRÁ - Info / Tip */
+#docs-root .info-callout.info {
+    background-color: #f0f7ff !important;
+    border-left-color: #3498db !important;
+    color: #1e3a8a !important;
+}
+#docs-root .info-callout.info i { color: #3498db !important; }
+
+/* ZELENÁ - Úspěch / Doporučeno */
+#docs-root .info-callout.success {
+    background-color: #f0fff4 !important;
+    border-left-color: #2ecc71 !important;
+    color: #166534 !important;
+}
+#docs-root .info-callout.success i { color: #2ecc71 !important; }
+
+/* ČERVENÁ - Varování / Pozor */
+#docs-root .info-callout.warning {
+    background-color: #fff5f5 !important;
+    border-left-color: #e74c3c !important;
+    color: #991b1b !important;
+}
+#docs-root .info-callout.warning i { color: #e74c3c !important; }
+
+/* Společný styl pro ikonu a text uvnitř */
+#docs-root .info-callout i {
+    font-size: 1.2rem !important;
+    margin-top: 2px !important;
+}
+#docs-root .info-callout strong {
+    display: block !important;
+    margin-bottom: 3px !important;
+}
+
+/* Hlavní wrapper dokumentace */
+.docs-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Postranní lišta */
+.docs-sidebar {
+    width: 250px;
+    flex-shrink: 0; /* Aby se menu nezmenšovalo */
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+/* Hlavní plocha s textem */
+.docs-content {
+    flex-grow: 1;
+    min-width: 0; /* Důležité pro responzivitu */
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+}
+/* Toto opraví konflikt - cílíme jen na navigaci uvnitř dokumentace */
+.docs-sidebar nav {
+    all: unset; /* Vynuluje zděděné styly z hlavního navbaru */
+    display: block;
+    width: 100%;
+}
+
+.docs-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.docs-sidebar li {
+    margin-bottom: 10px;
+}
+
+.docs-sidebar a {
+    text-decoration: none;
+    color: #2c3e50;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.docs-sidebar a:hover {
+    background-color: #e3f2fd;
+    color: #3498db;
+    padding-left: 20px; /* Efekt posunutí při najetí */
+}
+
+/* Aktivní odkaz */
+.docs-sidebar a.active {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Mřížka karet v dokumentaci */
+#docs-root-container .docs-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+/* Styl samotné karty */
+#docs-root-container .docs-card {
+    background: #fff;
+    border: 1px solid #e6ecf1;
+    border-radius: 10px;
+    padding: 25px;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: all 0.3s ease !important;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#docs-root-container .docs-card:hover {
+    border-color: #3498db;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateY(-5px);
+}
+
+#docs-root-container .docs-card i {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+#docs-root-container .docs-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+#docs-root-container .docs-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5c6975;
+}
+
+/* Obrázky v dokumentaci */
+#docs-root-container .docs-image-wrapper {
+    margin: 30px 0;
+    text-align: center;
+}
+
+#docs-root-container .docs-image-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+#docs-root-container .docs-image-caption {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #9daab6;
+    font-style: italic;
+}

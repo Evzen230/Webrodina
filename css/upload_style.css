@@ -1,0 +1,105 @@
+.upload-drop-area {
+    border: 2px dashed #0084ff;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    background: #f8fbff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.upload-drop-area.drag-over {
+    background: #e0efff;
+    border-color: #0056b3;
+    transform: scale(1.02);
+}
+
+#file-preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.preview-card {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    position: relative;
+    align-items: center;
+}
+
+.preview-img-container {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.preview-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.preview-inputs {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.preview-inputs input, .preview-inputs textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ff4757;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+/* Kontejner pro náhledy */
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Karta jednotlivé fotky */
+.preview-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.preview-item img {
+    width: 100%;
+    height: 120px; /* Pevná výška náhledu */
+    object-fit: cover; /* Ořízne fotku, aby nedeformovala kartu */
+    border-radius: 6px;
+}
+
+/* Malé inputy pod fotkou */
+.preview-item input {
+    font-size: 0.85rem;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}

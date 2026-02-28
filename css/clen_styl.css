@@ -1,0 +1,135 @@
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+.member-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.member-avatar {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #0084ff, #00c6ff);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+}
+
+.member-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f9f9f9;
+}
+
+.stat strong { display: block; font-size: 1.2rem; color: #333; }
+.stat span { font-size: 0.8rem; color: #aaa; text-transform: uppercase; }
+
+/* Odznáčky (Badges) */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.badge.gold { background: #fff9e6; color: #ffd700; border: 1px solid #ffeeba; }
+.badge.purple { background: #eef7ff; color: #9b59b6; border: 1px solid #c7b1d0; }
+.badge.red { background: #f5f5f5; color: #e74c3c; border: 1px solid #f0b7b0; }
+.badge.blue { background: #fff9e6; color: #3498db; border: 1px solid #ffeeba; }
+.badge.green { background: #eef7ff; color: #2ecc71; border: 1px solid #bde4ff; }
+.badge.gray { background: #f5f5f5; color: #bdc3c7; border: 1px solid #ddd; }
+
+
+a{
+   text-decoration: none; 
+}
+
+.badge-special {
+    background: #2f3542; /* Tmavá barva noci */
+    color: #ffa502;      /* Zlatá barva měsíce */
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid #ffa502;
+    cursor: help;
+}
+/* Sjednocení vzhledu všech odznaků */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+/* Konkrétní barvy pro tajné odznaky */
+.badge.night { 
+    background: linear-gradient(135deg, #2c3e50, #000000); 
+    border: 1px solid #ffa502;
+    color: #ffa502;
+}
+
+.badge.heart { 
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+}
+
+.badge.book { 
+    background: linear-gradient(135deg, #747d8c, #2f3542);
+    border: 1px solid #ced4da;
+}
+
+/* Efekt při najetí */
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.badge.orange { background: linear-gradient(135deg, #e67e22, #d35400); }
+.badge.teal { background: linear-gradient(135deg, #1abc9c, #16a085); }
+
+.member-avatar {
+    width: 80px;  /* Nebo velikost, kterou tam máš teď */
+    height: 80px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden; /* Důležité, aby obrázek nepřetékal */
+    background: #f0f2f5;
+    border: 3px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-avatar img {
+    display: block;
+}

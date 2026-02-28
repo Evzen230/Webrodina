@@ -1,0 +1,275 @@
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.calendar-table th {
+    background: #f8f9fa;
+    padding: 15px;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.calendar-table td {
+    width: 14.28%;
+    height: 120px;
+    border: 1px solid #f0f0f0;
+    vertical-align: top;
+    padding: 10px;
+    transition: background 0.2s;
+}
+
+.calendar-table td.today {
+    background: #fff9e6;
+}
+
+.day-num {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Bublinky s událostmi */
+.event-tag {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-tag.narozeniny { background: #e74c3c; } /* Červená */
+.event-tag.oslava { background: #0084ff; }    /* Modrá */
+.event-tag.sraz { background: #2ecc71; }      /* Zelená */
+.event-tag.jine { background: #5503b9; }    
+.event-tag.vyroci { background: #FFD700; }   
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.calendar-admin-section {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.calendar-admin-section .card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.calendar-admin-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.subtitle {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.input-group input, 
+.input-group select, 
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ecf0f1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.mt-15 { margin-top: 15px; }
+
+.btn-save {
+    margin-top: 25px;
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.btn-save:hover {
+    background: #219150;
+}
+
+/* Responzivita pro mobily */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Styl pro plusko v buňce */
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-event-btn {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.add-event-btn:hover { color: #0084ff; }
+
+/* Modal (Popup) pozadí */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+
+/* Modal Box */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close:hover { color: #000; }
+
+.btn-today {
+    background: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+.btn-today:hover { background: #e0e0e0; color: #0084ff; }
+.detail-content {
+    border-top: 10px solid #3498db; /* Výchozí barva */
+}
+
+.detail-header h2 { margin-bottom: 5px; }
+
+.detail-info { margin: 20px 0; line-height: 1.6; }
+
+.description-box {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid #eee;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-delete:hover { background: #c0392b; }
+
+/* Aby se dalo na štítek kliknout */
+.event-tag { cursor: pointer; transition: opacity 0.2s; }
+.event-tag:hover { opacity: 0.8; }
+
+/* Základní úprava štítku pro lepší napojení */
+.event-tag {
+    margin-bottom: 2px;
+    border-radius: 4px; /* Výchozí pro jednodenní akce */
+    padding: 4px 8px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Začátek akce - usekneme pravý roh */
+.event-tag.event-start {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: -11px; /* Přesah do další buňky (uprav podle paddingu td) */
+    z-index: 2;
+}
+
+/* Prostředek akce - žádné kulaté rohy a roztažení */
+.event-tag.event-mid {
+    border-radius: 0;
+    margin-left: -11px;
+    margin-right: -11px;
+}
+
+/* Konec akce - usekneme levý roh */
+.event-tag.event-end {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -11px;
+}

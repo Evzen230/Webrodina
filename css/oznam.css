@@ -1,0 +1,48 @@
+/* Hlavní kontejner boxíku */
+.announcement-box {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin: 20px 0 !important;
+    padding: 15px 25px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    border-left: 8px solid !important;
+    font-family: sans-serif;
+}
+
+/* Modrá - Info */
+.announcement-box.info {
+    background-color: #e3f2fd !important;
+    color: #0d47a1 !important;
+    border-left-color: #2196f3 !important;
+}
+
+/* Červená - Varování (Warning) */
+.announcement-box.warning {
+    background-color: #ffebee !important;
+    color: #b71c1c !important;
+    border-left-color: #f44336 !important;
+}
+
+/* Zelená - Úspěch (Success) */
+.announcement-box.success {
+    background-color: #e8f5e9 !important;
+    color: #1b5e20 !important;
+    border-left-color: #4caf50 !important;
+}
+
+/* Ikona */
+.announcement-box i {
+    font-size: 1.8rem !important;
+}
+
+/* Text uvnitř */
+.announcement-text {
+    font-size: 1.1rem !important;
+    line-height: 1.4 !important;
+}
+
+.announcement-text p {
+    margin: 0 !important;
+}
