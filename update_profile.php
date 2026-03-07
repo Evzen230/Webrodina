@@ -104,7 +104,21 @@ if ($action === 'update_password') {
     header("Location: nastaveni.php?status=password_ok");
     exit;
 }
+// --- 3. SMAZÁNÍ AVATARU (Přidej do update_profile.php) ---
+if ($action === 'delete_avatar') {
+    $uploadDir = "uploads/avatars/";
+    $stmt = $conn->prepare("SELECT avatar FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $oldFile = $stmt->fetchColumn();
 
+    if ($oldFile && file_exists($uploadDir . $oldFile)) {
+        unlink($uploadDir . $oldFile);
+    }
+
+    $stmt = $conn->prepare("UPDATE users SET avatar = NULL WHERE id = ?");
+    $stmt->execute([$user_id]);
+    exit; // U fetch volání stačí skončit bez přesměrování
+}
 // Pokud někdo přistoupí přímo bez akce
 header("Location: nastaveni.php");
 exit;   

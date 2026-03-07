@@ -8,10 +8,10 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['REMOTE_ADDR'] == '127.0.0.
     $password = ""; // V Laragonu je heslo prázdné
 } else {
     // NASTAVENÍ PRO CZECHIA (tvůj main web)
-    $host = "webrodina.dbaserver.net";
-    $dbname = "webrodina";
-    $username = "webrodina";
-    $password = "WPyG3CNeH5VA";
+    $host = "HOST.123.CZ";
+    $dbname = "JMÉNO";
+    $username = "UŽIVATEL";
+    $password = "HESLO";
 }
 
 try {

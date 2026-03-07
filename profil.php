@@ -78,9 +78,15 @@ $countKronika = count($kronikaEntries);
 
 $isMyProfile = ($profileUser['id'] == $_SESSION['user_id']);
 
-$avatarPath = !empty($profileUser['avatar']) 
-    ? 'uploads/avatars/' . $profileUser['avatar'] 
-    : 'https://api.dicebear.com/9.x/thumbs/svg?backgroundType=solid,gradientLinear&seed=' . urlencode($profileUser['user']);
+// Definice cesty k avataru nebo generátoru
+if (!empty($profileUser['avatar']) && file_exists('uploads/avatars/' . $profileUser['avatar'])) {
+    $avatarPath = 'uploads/avatars/' . $profileUser['avatar'];
+} else {
+    // Pokud avatar v DB není, nebo soubor fyzicky chybí, použijeme generátor
+    // Používáme jméno uživatele jako 'seed', aby měl každý svůj unikátní obrázek
+    $seed = urlencode($profileUser['user'] ?? 'Guest');
+    $avatarPath = "https://api.dicebear.com/9.x/thumbs/svg?seed={$seed}&backgroundType=solid,gradientLinear";
+}
 ?>
 
 <!DOCTYPE html>
@@ -285,7 +291,8 @@ function toggleBioEdit() {
 async function saveBio() {
     const newBio = document.getElementById('bio-input').value;
     const formData = new FormData();
-    formData.append('bio', newBio);
+    formData.append('action', 'update_general'); // <--- PŘIDÁNO
+    formData.append('new_bio', newBio);          // Změněno z 'bio' na 'new_bio' podle tvého PHP
 
     const response = await fetch('update_profile.php', {
         method: 'POST',
@@ -293,13 +300,14 @@ async function saveBio() {
     });
 
     if (response.ok) {
-        location.reload(); // Obnoví stránku s novým biem
+        location.reload();
     }
 }
 
 async function uploadAvatar(input) {
     if (input.files && input.files[0]) {
         const formData = new FormData();
+        formData.append('action', 'update_general'); // <--- PŘIDÁNO
         formData.append('avatar', input.files[0]);
 
         const response = await fetch('update_profile.php', {
@@ -317,7 +325,7 @@ async function deleteAvatar() {
     if (!confirm("Opravdu chceš smazat svou profilovou fotku?")) return;
 
     const formData = new FormData();
-    formData.append('delete_avatar', 'true');
+    formData.append('action', 'delete_avatar'); // <--- Odkaz na novou akci v PHP
 
     const response = await fetch('update_profile.php', {
         method: 'POST',
@@ -325,7 +333,7 @@ async function deleteAvatar() {
     });
 
     if (response.ok) {
-        location.reload(); // Stránka se obnoví a naskočí Thumbs
+        location.reload();
     }
 }
 
